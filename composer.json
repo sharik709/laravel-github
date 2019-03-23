@@ -22,5 +22,13 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ANet\\AuthorizeNetServiceProvider"
+            ],
+            "aliases": {
+            }
+        }
+    }
 }
