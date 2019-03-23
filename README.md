@@ -57,6 +57,10 @@ $repository->pullRequests();
 ```php
 $repository->contributors();
 ```
+
+
+above ```$repository``` variable can be the result of ```get``` or you can call ```list```
+get list of repositories and find the one you want to work with and call above methods.
 ---
 
 ### More in usage.md file
@@ -65,11 +69,7 @@ $repository->contributors();
 
 ## Credit
 This package has been built on top of another package called  ```tan-tan-kanarek/github-php-client```. This package is a
-wrapper on that package. Credit for build such a great functionality to interact with github is to ```tan tan kanarek```.
-
-above ```$repository``` variable can be the result of ```get``` or you can call ```list```
-get list of repositories and find the one you want to work with and call above methods.
-
+wrapper on that package. Credit for building such a great functionality to interact with github is to ```tan tan kanarek```.
 
 # License
 MIT
