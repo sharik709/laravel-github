@@ -42,5 +42,13 @@ class Repository extends AbstractGithubApi
         return $this->client->repos->listLanguages(config('laravelgithub.username'), $this->repository->getName());
     }
 
+    /**
+     * @return array
+     */
+    public function issues() : array
+    {
+        return $this->client->issues->listIssues(config('laravelgithub.username'), $this->repository->getName());
+    }
+
 
 }

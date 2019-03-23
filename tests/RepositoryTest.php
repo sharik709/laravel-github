@@ -90,4 +90,25 @@ class RepositoryTest extends TestCase
         $this->assertIsArray($languages);
     }
 
+    public function test_issues_are_returned_for_a_repository()
+    {
+        $mock = $this
+            ->apiMock
+            ->shouldReceive('listIssues')
+            ->once()
+            ->andReturn([])
+            ->getMock();
+        $mock->issues = $mock;
+
+        $repoMock = Mockery::mock(GitHubSimpleRepo::class)
+            ->shouldReceive('getName')
+            ->once()
+            ->andReturn('some/name')
+            ->getMock();
+
+        $repository = new Repository($repoMock, $mock);
+        $issues = $repository->issues();
+        $this->assertIsArray($issues);
+    }
+
 }
