@@ -30,10 +30,7 @@ class RepositoryTest extends TestCase
                     ->getMock();
         $mock->repos = $mock;
 
-        $repoOwnerMock = $this->getRepoOwnerMock('getId', '1');
-        $repoMock = $this->getRepoMock('getOwner', $repoOwnerMock);
-
-        $repoMock
+        $repoMock = Mockery::mock(GitHubSimpleRepo::class)
             ->shouldReceive('getName')
             ->once()
             ->andReturn('some/name')
@@ -109,6 +106,27 @@ class RepositoryTest extends TestCase
         $repository = new Repository($repoMock, $mock);
         $issues = $repository->issues();
         $this->assertIsArray($issues);
+    }
+
+    public function test_if_pull_requests_are_returned_for_a_repository()
+    {
+        $mock = $this
+            ->apiMock
+            ->shouldReceive('listPullRequests')
+            ->once()
+            ->andReturn([])
+            ->getMock();
+        $mock->pulls = $mock;
+
+        $repoMock = Mockery::mock(GitHubSimpleRepo::class)
+            ->shouldReceive('getName')
+            ->once()
+            ->andReturn('some/name')
+            ->getMock();
+
+        $repository = new Repository($repoMock, $mock);
+        $pulls = $repository->pullRequests();
+        $this->assertIsArray($pulls);
     }
 
 }

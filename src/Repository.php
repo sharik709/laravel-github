@@ -23,7 +23,7 @@ class Repository extends AbstractGithubApi
      */
     public function contributors() : array
     {
-        return $this->client->repos->listContributors($this->repository->getOwner()->getId(), $this->repository->getName());
+        return $this->client->repos->listContributors($this->githubUsername, $this->repository->getName());
     }
 
     /**
@@ -31,7 +31,7 @@ class Repository extends AbstractGithubApi
      */
     public function tags()
     {
-        return $this->client->repos->listTags(config('laravelgithub.username'), $this->repository->getName());
+        return $this->client->repos->listTags($this->githubUsername, $this->repository->getName());
     }
 
     /**
@@ -39,7 +39,7 @@ class Repository extends AbstractGithubApi
      */
     public function languages() : array
     {
-        return $this->client->repos->listLanguages(config('laravelgithub.username'), $this->repository->getName());
+        return $this->client->repos->listLanguages($this->githubUsername, $this->repository->getName());
     }
 
     /**
@@ -47,7 +47,15 @@ class Repository extends AbstractGithubApi
      */
     public function issues() : array
     {
-        return $this->client->issues->listIssues(config('laravelgithub.username'), $this->repository->getName());
+        return $this->client->issues->listIssues($this->githubUsername, $this->repository->getName());
+    }
+
+    /**
+     * @return array
+     */
+    public function pullRequests() : array
+    {
+        return $this->client->pulls->listPullRequests($this->githubUsername, $this->repository->getName());
     }
 
 

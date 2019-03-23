@@ -14,10 +14,13 @@ abstract class AbstractGithubApi
     /** @var GitHubSimpleRepo */
     public $repository;
 
+    public $githubUsername;
+
     public function __construct($client = null)
     {
         $this->client = $client ?? new GitHubClient();
         $this->client->setCredentials(config('laravelgithub.username'), config('laravelgithub.password'));
+        $this->githubUsername = config('laravelgithub.username');
     }
 
     /**

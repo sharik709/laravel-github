@@ -2,6 +2,7 @@
 
 namespace LaravelGithub;
 
+use GitHubClientException;
 use Illuminate\Support\Collection;
 
 class Repositories extends AbstractGithubApi
@@ -22,9 +23,14 @@ class Repositories extends AbstractGithubApi
      * @param string $name
      * @return Repository
      */
-    public function get(string $name) : Repository
+    public function get(string $name) : ?Repository
     {
-        return new Repository($this->client->repos->get(config('laravelgithub.username'), $name), $this->client);
+        try {
+            $repository = $this->client->repos->get(config('laravelgithub.username'), $name);
+        } catch ( GitHubClientException $ex ) {
+            return null;
+        }
+        return new Repository($repository, $this->client);
     }
 
 
