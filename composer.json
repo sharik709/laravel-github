@@ -25,10 +25,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "ANet\\AuthorizeNetServiceProvider"
-            ],
-            "aliases": {
-            }
+                "LaravelGithub\\LaravelGithubServiceProvider"
+            ]
         }
     }
 }
