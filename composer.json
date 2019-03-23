@@ -1,0 +1,23 @@
+{
+    "name": "sharik709/laravel-github",
+    "description": "It will make it easier for laravel application to use github api",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^8.1@dev"
+    },
+    "license": "MIT",
+    "autoload" : {
+        "psr-4": {
+            "LaravelGithub\\": "src",
+            "LaravelGithub\\Test\\" : "src/tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sharik shaikh",
+            "email": "shaikhsharik709@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
