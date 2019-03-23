@@ -5,6 +5,7 @@ namespace LaravelGithub\Test;
 use GitHubClient;
 use Illuminate\Support\Collection;
 use LaravelGithub\Repositories;
+use LaravelGithub\Repository;
 use Mockery;
 
 class RepositoriesTest extends TestCase
@@ -36,5 +37,23 @@ class RepositoriesTest extends TestCase
         $list = $repositories->list();
         $this->assertCount(3, $list);
         $this->assertIsArray($list);
+    }
+
+    public function test_if_repository_is_found()
+    {
+        // mocking methods
+        $mock = $this
+            ->apiMock
+            ->shouldReceive('get')
+            ->with(config('laravelgithub.username'), 'something')
+            ->once()
+            ->andReturn([])
+            ->getMock();
+        $mock->repos = $mock;
+
+        $repositories = new Repositories($mock);
+
+        $repo = $repositories->get('something');
+        $this->assertInstanceOf(Repository::class, $repo);
     }
 }

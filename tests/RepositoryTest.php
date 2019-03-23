@@ -2,6 +2,7 @@
 namespace LaravelGithub\Test;
 
 use GitHubClient;
+use GitHubSimpleRepo;
 use LaravelGithub\Repositories;
 use LaravelGithub\Repository;
 use Mockery;
@@ -54,16 +55,9 @@ class RepositoryTest extends TestCase
             ->getMock();
         $mock->repos = $mock;
 
-        $repository = new Repository($mock);
+        $repository = new Repository([], $mock);
 
-        $repositories = new Repositories();
-        $repos = $repositories->list();
-        $repo = array_pop($repos);
-
-        $repoOwnerMock = $this->getRepoOwnerMock('getId', '1');
-        $repoMock = $this->getRepoMock('getOwner', $repoOwnerMock);
-
-        $repoMock
+        $repoMock = Mockery::mock(GitHubSimpleRepo::class)
             ->shouldReceive('getName')
             ->once()
             ->andReturn('some/name')
@@ -74,7 +68,6 @@ class RepositoryTest extends TestCase
         $this->assertIsArray($tags);
         $this->assertCount(4, $tags);
     }
-
 
 
 }

@@ -18,6 +18,15 @@ class Repositories extends AbstractGithubApi
         }, $repos);
     }
 
+    /**
+     * @param string $name
+     * @return Repository
+     */
+    public function get(string $name) : Repository
+    {
+        return new Repository($this->client->repos->get(config('laravelgithub.username'), $name), $this->client);
+    }
+
 
 
 
