@@ -1,8 +1,9 @@
 <?php
 return [
 
-    'GITHUB_USERNAME' => env('GITHUB_USERNAME'),
+    'username' => env('GITHUB_USERNAME'),
 
-    'GITHUB_TOKEN' => env('GITHUB_TOKEN')
+    'token' => env('GITHUB_TOKEN'),
 
+    'password' => env('GITHUB_PASSWORD')
 ];

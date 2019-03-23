@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 class LaravelGithubServiceProvider extends ServiceProvider
 {
 
-    public function boot()
+    public function register()
     {
         $this->setupConfig();
     }
@@ -18,7 +18,6 @@ class LaravelGithubServiceProvider extends ServiceProvider
     public function setupConfig():void
     {
         $configLocation = __DIR__.'/Config/laravelgithub.php';
-
         $this->publishes([
             $configLocation => config_path('laravelgithub.php')
         ], 'laravelgithub');
@@ -27,12 +26,6 @@ class LaravelGithubServiceProvider extends ServiceProvider
             'laravelgithub'
         );
     }
-
-    public function register()
-    {
-
-    }
-
 
 
 }
