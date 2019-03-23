@@ -14,8 +14,10 @@ If you are using laravel 5.5 and above then you don't need to register service p
 In your ```.env``` file you will need to setup your api keys. Which you can get from github
 ```
 [Laravel Github Keys]
+
+[Laravel Github API]
 GITHUB_USERNAME=
-GITHUB_TOKEN=
+GITHUB_PASSWORD=
 ```
 You can also set these things to ```.env.example```
 
