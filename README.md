@@ -23,8 +23,49 @@ You can also set these things to ```.env.example```
 
 Now, You should be able to use the api
 
-# Under Development
-Please do not use this package in production env. This package is still under development
+## Usage
+
+#### To Retrieve all repositories
+```php
+use LaravelGithub\Repositories;
+
+$repos = new Repositories;
+$repositories = $repos->list()
+```
+
+#### To Get a specific repository
+```php
+use LaravelGithub\Repositories;
+
+$repos = new Repository;
+
+$repository = $repos->get($name);
+
+```
+
+#### To get issues of a repository
+```php
+$repository->issues()
+```
+
+#### To get pull requests for a repository
+```php
+$repository->pullRequests();
+```
+
+#### To get contributors for a repository
+```php
+$repository->contributors();
+```
+
+above ```$repository``` variable can be the result of ```get``` or you can call ```list```
+get list of repositories and find the one you want to work with and call above methods.
+
+### More Coming
+I'm working to get more functionality available. Soon, adding more helpful methods.
+
+This repository is built on top of another repository called ```tan-tan-kanarek/github-php-client``` to make it
+more like laravel packages but more better approach to interact with github.
 
 # License
 MIT
