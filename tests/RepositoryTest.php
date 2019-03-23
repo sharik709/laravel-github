@@ -69,5 +69,25 @@ class RepositoryTest extends TestCase
         $this->assertCount(4, $tags);
     }
 
+    public function test_languages_are_returned_for_a_repository ()
+    {
+        $mock = $this
+            ->apiMock
+            ->shouldReceive('listLanguages')
+            ->once()
+            ->andReturn([])
+            ->getMock();
+        $mock->repos = $mock;
+
+        $repoMock = Mockery::mock(GitHubSimpleRepo::class)
+            ->shouldReceive('getName')
+            ->once()
+            ->andReturn('some/name')
+            ->getMock();
+
+        $repository = new Repository($repoMock, $mock);
+        $languages = $repository->languages();
+        $this->assertIsArray($languages);
+    }
 
 }
